@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Text Color Every 2 Seconds</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #text {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<h1 id="text">This text will change color every 2 seconds!</h1>
+
+<script>
+    $(document).ready(function(){
+        // Define an array of colors to cycle through
+        var colors = ["red", "blue", "green", "purple", "orange"];
+        var index = 0;
+
+        // Set an interval to change the color every 2 seconds
+        setInterval(function() {
+            // Change the color of the text
+            $('#text').css('color', colors[index]);
+
+            // Increment the index and reset it if it exceeds the color array length
+            index = (index + 1) % colors.length;
+        }, 2000); // 2000 milliseconds = 2 seconds
+    });
+</script>
+
+</body>
+</html>

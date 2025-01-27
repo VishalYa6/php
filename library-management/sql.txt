@@ -1,0 +1,23 @@
+-- Database: library_system
+CREATE DATABASE library_system;
+
+USE library_system;
+
+-- Table to store member information
+CREATE TABLE members (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    membership_id VARCHAR(50) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+
+-- Table to store book issues
+CREATE TABLE issued_books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    membership_id VARCHAR(50) NOT NULL,
+    book_title VARCHAR(100) NOT NULL,
+    issue_date DATE NOT NULL,
+    return_date DATE
+);
