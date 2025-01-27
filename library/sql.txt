@@ -1,0 +1,53 @@
+-- Step 1: Create the database
+CREATE DATABASE IF NOT EXISTS library;
+
+-- Step 2: Use the created database
+USE library;
+
+-- Step 3: Create the members table to store member information
+CREATE TABLE IF NOT EXISTS members (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    membership_id VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    address TEXT,
+    phone_number VARCHAR(20),
+    email VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Step 4: Create the books table to store book information
+CREATE TABLE IF NOT EXISTS books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    book_title VARCHAR(100) NOT NULL,
+    author VARCHAR(100),
+    isbn VARCHAR(50) UNIQUE
+);
+
+-- Step 5: Create the issued_books table to store issued books information
+CREATE TABLE IF NOT EXISTS issued_books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    membership_id VARCHAR(50) NOT NULL,
+    book_id INT NOT NULL,
+    issue_date DATE,
+    return_date DATE,
+    FOREIGN KEY (membership_id) REFERENCES members(membership_id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);
+
+-- Step 6: Insert sample data into the members table
+INSERT INTO members (membership_id, name, address, phone_number, email) VALUES
+('M001', 'John Doe', '123 Elm Street, Springfield', '123-456-7890', 'john.doe@example.com'),
+('M002', 'Jane Smith', '456 Oak Avenue, Springfield', '987-654-3210', 'jane.smith@example.com'),
+('M003', 'Alice Johnson', '789 Pine Road, Springfield', '555-123-4567', 'alice.johnson@example.com');
+
+-- Step 7: Insert sample data into the books table
+INSERT INTO books (book_title, author, isbn) VALUES
+('The Great Gatsby', 'F. Scott Fitzgerald', '9780743273565'),
+('To Kill a Mockingbird', 'Harper Lee', '9780061120084'),
+('1984', 'George Orwell', '9780451524935'),
+('Pride and Prejudice', 'Jane Austen', '9781503290563');
+
+-- Step 8: Insert sample data into the issued_books table
+INSERT INTO issued_books (membership_id, book_id, issue_date, return_date) VALUES
+('M001', 1, '2025-01-01', '2025-01-15'),
+('M002', 2, '2025-01-05', '2025-01-20'),
+('M003', 3, '2025-01-10', '2025-01-25');

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Toggle</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #toggleText {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="toggleText">This text will toggle visibility every second!</div>
+
+    <script>
+        $(document).ready(function() {
+            setInterval(function() {
+                $('#toggleText').toggle();
+            }, 1000); // 1000 milliseconds = 1 second
+        });
+    </script>
+
+</body>
+</html>
+
